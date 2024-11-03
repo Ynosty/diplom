@@ -1,0 +1,192 @@
+{% extends 'home/newbase.html' %}
+{% load static %}
+
+
+
+
+<body>
+    {% block content %}
+    <!-- Home -->
+    <section class="home" id="home">
+        <div class="text">
+            <h1><span>Хочете </span> купити <br>автомобіль</h1>
+            <p>Найкращий веб-сайт з купівлі автомобілів найвідоміший веб-сайт бренду включає bmw rollroyce Honda ferrari та багато інших...
+            </p>
+            <div class="app-stores">
+                <a href="#"> <img src="{% static 'img/ios6.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/play2.png' %}" alt=""></a>
+            </div>
+        </div>
+
+        <form action="">
+            <div class="form-container">
+                <div class="input-box">
+                    <span>Місцезнаходження</span>
+                    <input type="search" name="" id="" placeholder="Search Places">
+                </div>
+                <div class="input-box">
+                    <span>Дата забирання</span>
+                    <input type="date" name="" id="">
+                </div>
+                <div class="input-box">
+                    <span>Дата повернення</span>
+                    <input type="date" name="" id="">
+                </div>
+                <input type="submit" name="" id="" class="btn">
+            </div>
+        </form>
+    </section>
+
+
+    <!-- Ride -->
+    <section class="ride" id="ride">
+        <div class="heading">
+            <span>Як це працює</span>
+            <h1>Купити за 3 простих кроки</h1>
+        </div>
+        <div class="ride-container">
+            <div class="box">
+                <i class="bx bxs-map"></i>
+                <h2>Виберіть місце розташування</h2>
+                <p>Будь-яке місце в будь-якій точці світу - від Землі до Марса, від Індії до Англії, від Азії до Антарктиди, від Делі до Мумбаї, від села до міста. Carpido тут для вас. </p>
+            </div>
+            
+            <div class="box">
+                <i class='bx bxs-calendar-check'></i>
+                <h2>Дата забирання</h2>
+                <p> Виберіть дату Забронюйте автомобіль, потім оплатіть Назвіть мені дату, коли ви будете забирати автомобіль, я передам його вам для поїздки, і ви зможете насолоджуватися життям з сім'єю та друзями. </p>
+            </div>
+
+            <div class="box">
+                <i class='bx bxs-calendar-star'></i>
+                <h2>Замовляйте авто</h2>
+                <p>Забронюйте машину, виберіть дату, а потім заплатіть Забронюйте різні машини з хорошим курсом Я дам вам машину для їзди. їдьте і насолоджуйтесь своїм життям з родиною. </p>
+            </div>
+
+    
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="heading">
+            <span>Найкращі послуги</span>
+            <h1>Ознайомтеся з найкращими пропозиціями <br>Від найкращих дилерів
+            </h1>
+        </div>
+
+        
+        <div class="services-container">
+            {% for cars in car  %}
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{cars.images.url}}" alt="">
+                </div>
+                <p><a href="{% url 'detail' cars.uid %}" >View</a></p>
+                <h3>{{cars.car_name}}</h3>
+                <h2>{{cars.price}} <span>$</span> </h2>
+                
+                {% if user.is_authenticated %}
+                <a href="{% url 'detail' cars.uid %}" class="btn">Купити зараз</a>
+                {% else %}
+                <a href="{% url 'detail' cars.uid %}" class="btn">Купити зараз</a>
+                {% endif %}
+                
+                {% comment %} <p>  <a href="{% url 'detail' detail_uid %}" class="btn btn-success"> View</a> </p> {% endcomment %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="heading">
+            <span>Про нас</span>
+            <h1>Найкращий клієнтський досвід</h1>
+        </div>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="{% static 'img/cc.jpg' %}" alt="about.jpg">
+            </div>
+            <div class="about-text">
+                <span>Про нас</span>
+                <p>Ми - веб-сайт <strong style='color:orange;'> Carpido </strong> для купівлі автомобілів з нагородою за найкращий клієнтський досвід 2020 2021 2022. ми створили цю компанію в 2020 році, і за три роки ми досягли найбільшої кількості користувачів. </p>
+                <p>Наша місія - забезпечити найкращий клієнтський досвід для ваших користувачів.</p>
+                <a href="#" class="btn">Дізнатися більше</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Reviews -->
+    <section class="reviews" id="reviews">
+        <div class="heading">
+            <span>Огляд</span>
+            <h1>Що кажуть наші клієнти</h1>
+        </div>
+        <div class="reviews-container">
+            <div class="box">
+                <div class="rev-img">
+                    <img src="{% static 'img/rev1.jpeg' %}" alt="rev1.jpg">
+                </div>
+                <h2>Rencho Baba</h2>
+                <div class="stars">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star' ></i>
+                </div>
+                <p>Best car Buying website good car with good condition. I like this car me and my friends enjoying the long ride.</p>
+            </div>
+            <div class="box">
+                <div class="rev-img">
+                    <img src="{% static 'img/rev2.jpg' %}" alt="rev1.jpg">
+                </div>
+                <h2>Ak</h2>
+                <div class="stars">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star' ></i>
+                </div>
+                <p>Я гонщик "Формули-1". У них є дуже хороші гоночні машини за низькою ціною. Я купую машину і виграю змагання.</p>
+            </div>
+            <div class="box">
+                <div class="rev-img">
+                    <img src="{% static 'img/rev3.jpg' %}" alt="rev1.jpg">
+                </div>
+                <h2>Angelia</h2>
+                <div class="stars">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star-half' ></i>
+                </div>
+                <p>Ми з друзями вирішили поїхати в довгу подорож, купили машину і заощадили стільки грошей. Я повністю задоволений їхнім сервісом.  </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Підпишіться на розсилку новин</h2>
+        <div class="box">
+            <input type="email" name="email" id="" placeholder="Enter Your Email...">
+            <a href="#" class="btn" >Subscribe</a>
+        </div>
+    </section>
+    <div class="copyright">
+        <p style="text-align:center;">&#169; Parker-Car-Buying All Right Reserved 2022</p>
+        <div class="social">
+            <a href="#"><i class='bx bxl-facebook' ></i></a>
+            <a href="#"><i class='bx bxl-twitter' ></i></a>
+            <a href="#"><i class='bx bxl-instagram' ></i></a>
+        </div>
+    </div>
+    {% endblock content %}
+
+<!-- Scroll Reveal -->
